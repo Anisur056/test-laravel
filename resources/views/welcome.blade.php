@@ -7,10 +7,19 @@
     <title>test-laravel</title>
 </head>
 <body>
-    @include('pages.header')
+
+    @php
+        $fruits = ['one'=>'apple', 'two'=>'banana', 'three'=>'organge', 'four'=>'grapes'];
+        // $fruits = [];
+        $show_page = true;
+    @endphp
+
+    @includeWhen($show_page,'pages.header',['fruit_names' => $fruits])
 
     {{'Welcome to home page'}}
 
     @include('pages.footer')
+
+    @includeIf('pages.about')
 </body>
 </html>
