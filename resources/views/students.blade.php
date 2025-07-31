@@ -15,6 +15,7 @@
     <div class="container mt-3 pt-3">
         <table class="table table-sm table-striped">
             <h2>All Students</h2>
+            <a class="btn btn-primary btn-sm mb-3" href="{{ route('student-add-form') }}">Add Student</a>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -23,7 +24,9 @@
                 <th>City</th>
                 <th>Created</th>
                 <th>Updated</th>
-                <th>Action</th>
+                <th>Preview</th>
+                <th>Delete</th>
+                <th>Update</th>
             </tr>
             @foreach ($data as $user)
                 <tr>
@@ -35,9 +38,14 @@
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
                     <td><a class="btn btn-primary btn-sm" href="{{ route('student', $user->id) }}">View</a></td>
+                    <td><a class="btn btn-danger btn-sm" href="{{ route('student-deleter', $user->id) }}">Delete</a></td>
+                    <td><a class="btn btn-warning btn-sm" href="{{ route('student-update-form', $user->id) }}">Update</a></td>
                 </tr>
             @endforeach
         </table>
+        <div class="mt-5">
+            {{ $data->links('pagination::bootstrap-5') }}
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
